@@ -1,0 +1,21 @@
+name: maven project
+on: 
+  push:
+      branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: cloning github repo
+        uses: actions/checkout@7.0.0
+
+      - name: installing java
+        uses: actions/setup-java@v5.5.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: generating package for maven
+        run: mvn package
